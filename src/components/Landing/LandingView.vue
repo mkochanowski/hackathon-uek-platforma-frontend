@@ -1,6 +1,6 @@
 <template>
 	<div>
-		Home View
+		Spersonalizowane powiadomienia UEK
 	</div>
 </template>
 

@@ -18,7 +18,7 @@ import DashboardMessagesView from '@/components/Dashboard/DashboardMessagesView'
 import DashboardAnalyticsView from '@/components/Dashboard/DashboardAnalyticsView'
 import DashboardEventsView from '@/components/Dashboard/DashboardEventsView'
 import DashboardGroupsView from '@/components/Dashboard/DashboardGroupsView'
-import DashboardTimetableView from '@/components/Dashboard/DashboardTimetableView'
+import DashboardScheduleView from '@/components/Dashboard/DashboardScheduleView'
 
 import DashboardUserFrame from '@/components/Dashboard/User/DashboardUserFrame'
 import DashboardUserView from '@/components/Dashboard/User/DashboardUserView'
@@ -70,9 +70,9 @@ export default new Router({
 					component: DashboardView
 				},
 				{
-					path: 'timetable',
-					name: 'timetable',
-					component: DashboardTimetableView
+					path: 'schedule',
+					name: 'schedule',
+					component: DashboardScheduleView
 				},
 				{
 					path: 'events',

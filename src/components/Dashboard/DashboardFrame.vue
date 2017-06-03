@@ -2,11 +2,11 @@
 	<div>
 		<h1>Dashboard Frame</h1>
 		<ul>
-			<li><router-link :to="{ name: 'messages' }">Messages</router-link></li>
-			<li><router-link :to="{ name: 'events' }">Events</router-link></li>
-			<li><router-link :to="{ name: 'groups' }">User Groups</router-link></li>
-			<li><router-link :to="{ name: 'timetable' }">Timetable</router-link></li>
-			<li><router-link :to="{ name: 'analytics' }">Analytics</router-link></li>
+			<li><router-link :to="{ name: 'messages' }">Komunikaty</router-link></li>
+			<li><router-link :to="{ name: 'events' }">Wydarzenia</router-link></li>
+			<li><router-link :to="{ name: 'schedule' }">Plan zajęć</router-link></li>
+			<li><router-link :to="{ name: 'groups' }">Grupy studenckie</router-link></li>
+			<li><router-link :to="{ name: 'analytics' }">Statystyka</router-link></li>
 		</ul>
 		<router-view></router-view>
 	</div>

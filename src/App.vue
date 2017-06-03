@@ -1,10 +1,10 @@
 <template>
 	<div id="app">
 		<ul>
-			<li><router-link :to="{ name: 'home' }">Home</router-link></li>
-			<li><router-link :to="{ name: 'login' }">Login</router-link></li>
-			<li><router-link :to="{ name: 'register' }">Register</router-link></li>
-			<li><router-link :to="{ name: 'dashboard' }">Dashboard</router-link></li>
+			<li><router-link :to="{ name: 'home' }">Strona Główna</router-link></li>
+			<li><router-link :to="{ name: 'login' }">Zaloguj się</router-link></li>
+			<li><router-link :to="{ name: 'register' }">Zarejestruj się</router-link></li>
+			<li><router-link :to="{ name: 'dashboard' }">Panel</router-link></li>
 		</ul>
 		<div>
 			<router-view></router-view>
