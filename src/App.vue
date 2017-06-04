@@ -1,6 +1,5 @@
 <template>
 	<div id="app">
-		<h1>{{ app_name }}</h1>
 		<router-view></router-view>
 	</div>
 </template>
@@ -10,34 +9,30 @@
 		name: 'app',
 		data() {
 			return {
-				app_name: 'UEK Centrum',
+				app_name: 'Platforma UEK',
 				app_demo: true
 			}
 		}
 	}
 </script>
 
-<style>
-	#app {
-		font-family: 'Avenir', Helvetica, Arial, sans-serif;
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
-		text-align: center;
-		color: #2c3e50;
-		margin-top: 60px;
-	}
+<style lang="scss">
+	$background_primary: #EFEFEF;
+	$background_top: #fff;
+	$accent: #006505;
 
-	ul {
-		list-style-type: none;
+	body, html {
+		font-family: 'Roboto', sans-serif;
+		background-color: $background_primary;
 		padding: 0;
+		margin: 0;
 	}
-
-	li {
-		display: inline-block;
-		margin: 0 10px;
-	}
-
 	a {
-		color: #42b983;
+		color: $accent;
+	}
+	#top-bar {
+		background-color: $background_top;
+		padding-left: 2em;
+		padding-right: 2em;
 	}
 </style>
