@@ -62,7 +62,7 @@
 					</div>
 				</div>
 		</div>
-		<router-link :to="{ name: 'dashboard' }"><div id="demo" class="row text-center panel-padding">
+		<router-link :to="{ name: 'login' }"><div id="demo" class="row text-center panel-padding">
 			<div class="panel-header"><strong>Zobacz jak to działa</strong></div>
 			<div class="panel-content">Wypróbuj na własnej skórze!</div>
 		</div></router-link>
@@ -183,9 +183,11 @@
 	}
 	#demo {
 		background-color: #E7E7E7;
+		transition: all 0.3s ease;
 	}
 		#demo:hover {
 			background-color: #E2E2E2;
+			color: #333;
 		}
 	#credits {
 		box-shadow: inset 0px 0px 15px #1B1B1B;

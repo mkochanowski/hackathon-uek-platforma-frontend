@@ -22,7 +22,7 @@
 	$background_primary: #EFEFEF;
 	$background_top: #fff;
 	$accent: #006505;
-
+	$card-background: #F4F4F4;
 	$size: 80px;
 
 	.logo {
@@ -33,11 +33,12 @@
 		font-weight: 300;
 		margin: 1em;
 		font-size: 1.7em;
+		transition: all 0.3s ease;
 	}
 		.link:hover {
 			text-decoration: none;
 			color: #333;
-			opacity: 0.8;
+			opacity: 0.5;
 		}
 	
 	.fade-enter-active, .fade-leave-active {
@@ -51,6 +52,10 @@
 
 	.fade-enter, .fade-leave-active {
 		opacity: 0
+	}
+
+	.main-content {
+		margin: 5em;
 	}
 
 	body, html {
@@ -69,6 +74,13 @@
 		padding-right: 2em;
 		padding-top: 0.5em;
 		padding-bottom: 0.5em;
+		box-shadow: 0px 0px 25px 5px #E7E7E7;
+	}
+	.card {
+		margin: 1em;
+		padding: 1em;
+		background-color: $card-background; 
+		border-radius: 5px;
 		box-shadow: 0px 0px 25px 5px #E7E7E7;
 	}
 </style>

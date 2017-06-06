@@ -27,22 +27,11 @@
 
 <style lang="scss">
 	$color-secondary: #888;
-	$card-background: #F4F4F4;
 
-	.main-content {
-		margin: 5em;
-	}
 	.content-title {
 		color: $color-secondary;
 		font-weight: 300;
 		font-size: 2em;
 		margin-bottom: 1em;
-	}
-	.card {
-		margin: 1em;
-		padding: 3em;
-		background-color: $card-background; 
-		border-radius: 5px;
-		box-shadow: 0px 0px 25px 5px #E7E7E7;
 	}
 </style>
