@@ -1,6 +1,6 @@
 <template>
 	<div>
-		Dashboard Messages View
+		<div class="content-title">Komunikaty</div>
 	</div>
 </template>
 

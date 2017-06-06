@@ -1,6 +1,6 @@
 <template>
 	<div>
-		Dashboard Timetable View
+		<div class="content-title">Plan zajęć</div>
 	</div>
 </template>
 

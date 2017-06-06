@@ -1,13 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+import TopBar from '@/components/TopBar'
+
 // Landing
 import LandingFrame from '@/components/Landing/LandingFrame'
 import LandingView from '@/components/Landing/LandingView'
 
-import LoginFrame from '@/components/Landing/LoginFrame'
+// import LoginFrame from '@/components/Landing/LoginFrame'
 import LoginView from '@/components/Landing/LoginView'
-import ForgottenPasswordView from '@/components/Landing/ForgottenPasswordView'
+// import ForgottenPasswordView from '@/components/Landing/ForgottenPasswordView'
 
 import RegisterView from '@/components/Landing/RegisterView'
 
@@ -30,7 +32,10 @@ export default new Router({
 	routes: [
 		{
 			path: '/',
-			component: LandingFrame,
+			components: {
+				default: LandingFrame,
+				navigation: TopBar
+			},
 			children: [
 				{
 					path: '',
@@ -39,8 +44,9 @@ export default new Router({
 				},
 				{
 					path: 'login',
-					component: LoginFrame,
-					children: [
+					name: 'login',
+					component: LoginView
+					/* children: [
 						{
 							path: '',
 							name: 'login',
@@ -51,7 +57,7 @@ export default new Router({
 							name: 'forgotten',
 							component: ForgottenPasswordView
 						}
-					]
+					] */
 				},
 				{
 					path: '/register',

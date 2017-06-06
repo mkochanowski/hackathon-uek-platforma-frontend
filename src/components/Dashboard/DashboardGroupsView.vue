@@ -1,6 +1,6 @@
 <template>
 	<div>
-		Dashboard Groups View
+		<div class="content-title">Grupy docelowe</div>
 	</div>
 </template>
 

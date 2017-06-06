@@ -1,6 +1,6 @@
 <template>
 	<div>
-		Dashboard Events View
+		<div class="content-title">Wydarzenia</div>
 	</div>
 </template>
 

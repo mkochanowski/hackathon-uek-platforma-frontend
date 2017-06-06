@@ -1,6 +1,6 @@
 <template>
 	<div>
-		Dashboard Analytics View
+		<div class="content-title">Zaangażowanie</div>
 	</div>
 </template>
 
