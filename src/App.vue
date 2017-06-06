@@ -1,6 +1,8 @@
 <template>
 	<div id="app">
-		<router-view></router-view>
+		<transition name="fade">
+			<router-view></router-view>
+		</transition>
 	</div>
 </template>
 
@@ -37,6 +39,20 @@
 			color: #333;
 			opacity: 0.8;
 		}
+	
+	.fade-enter-active, .fade-leave-active {
+		transition-property: opacity;
+		transition-duration: .15s;
+	}
+
+	.fade-enter-active {
+		transition-delay: .15s;
+	}
+
+	.fade-enter, .fade-leave-active {
+		opacity: 0
+	}
+
 	body, html {
 		font-family: 'Roboto', sans-serif;
 		background-color: $background_primary;
@@ -53,6 +69,6 @@
 		padding-right: 2em;
 		padding-top: 0.5em;
 		padding-bottom: 0.5em;
-		box-shadow: 0px 0px 25px 5px #ccc;
+		box-shadow: 0px 0px 25px 5px #E7E7E7;
 	}
 </style>

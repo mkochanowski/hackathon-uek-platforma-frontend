@@ -10,9 +10,11 @@
 				<router-link :to="{ name: 'analytics' }" class="link">Zaangażowanie</router-link>
 			</div>
 		</div>
-		<div class="container">
+		<div class="container-fluid">
 			<div class="main-content">
-				<router-view></router-view>
+				<transition name="fade">
+					<router-view></router-view>
+				</transition>
 			</div>
 		</div>
 	</div>

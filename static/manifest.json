@@ -1,21 +1,16 @@
 {
-  "name": "Margherita",
-  "short_name": "Margherita",
+  "name": "Platforma UEK",
+  "short_name": "Platforma UEK",
   "icons": [
     {
-      "src": "/static/img/icons/android-chrome-192x192.png",
+      "src": "/static/favicon/android-chrome-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "/static/img/icons/android-chrome-512x512.png",
-      "sizes": "512x512",
       "type": "image/png"
     }
   ],
   "start_url": "/",
   "display": "fullscreen",
   "orientation": "portrait",
-  "background_color": "#ce3e1a",
-  "theme_color": "#ce3e1a"
+  "background_color": "#fff",
+  "theme_color": "#fff"
 }

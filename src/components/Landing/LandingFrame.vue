@@ -6,7 +6,9 @@
 				<router-link :to="{ name: 'dashboard' }" class="link" style="float: right;"><strong>Panel</strong></router-link>
 			</div>
 		</div>
-		<router-view></router-view>
+		<transition name="fade">
+			<router-view></router-view>
+		</transition>
 	</div>
 </template>
 
