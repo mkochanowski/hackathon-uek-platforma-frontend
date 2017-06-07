@@ -55,8 +55,15 @@
 	}
 
 	.main-content {
-		margin: 5em;
+		margin: 1em;
 	}
+	
+	@media only screen and (min-width : 992px) {
+		.main-content {
+			margin: 5em;
+		}
+    }
+
 
 	body, html {
 		font-family: 'Roboto', sans-serif;
