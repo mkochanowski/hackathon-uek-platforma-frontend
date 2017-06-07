@@ -44,19 +44,19 @@
 			<div class="row" style="margin-top: 3em;">
 					<div class="container icon-text">
 						<div class="col-md-3 col-sm-6 col-xs-6">
-							<i class="icon-docker icon-tech"></i><br/>
+							<img src="../../assets/icon/docker.png" alt="mail"/><br/>
 							Docker
 						</div>
 						<div class="col-md-3 col-sm-6 col-xs-6">
-							<i class="icon-go icon-tech"></i><br/>
+							<img src="../../assets/icon/go.png" alt="mail"/><br/>
 							Golang
 						</div>
 						<div class="col-md-3 col-sm-6 col-xs-6">
-							<i class="icon-javascript icon-tech"></i><br/>
+							<img src="../../assets/icon/js.png" alt="mail"/><br/>
 							Vue.js
 						</div>
 						<div class="col-md-3 col-sm-6 col-xs-6">
-							<i class="icon-postgres icon-tech"></i><br/>
+							<img src="../../assets/icon/postgre.png" alt="mail"/><br/>
 							PostgreSQL
 						</div>
 					</div>
