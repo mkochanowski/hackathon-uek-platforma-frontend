@@ -28,10 +28,33 @@
 <style lang="scss">
 	$color-secondary: #888;
 
+	.link {
+		font-size: 1.3em;
+	}
 	.content-title {
 		color: $color-secondary;
 		font-weight: 300;
 		font-size: 2em;
 		margin-bottom: 1em;
+	}
+	.navbar-nav {
+		height: 80px;
+	}
+	li {
+		height: 80px;
+		padding-top: 15px;
+	}
+	.card-title {
+		font-size: 2em;
+		font-weight: 400;
+	}
+	.card-content {
+		padding: 1em;
+	}
+	td {
+		padding: 0.5em;
+	}
+	tr.header, td.header {
+		font-weight: 700;
 	}
 </style>

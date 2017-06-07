@@ -2,18 +2,18 @@
 	<div>
 		<div class="container">
 			<div class="main-content">
-				<div class="card notice text-center" style="margin: 0; margin-bottom: 3em;">
-					Po kliknięciu na wybrany przycisk zostaniesz automatycznie zalogowany na jedno z kont demonstracyjnych
+				<div class="card notice text-center" style="margin: 0; margin-bottom: 1em;">
+					Po kliknięciu na wybrany przycisk zostaniesz automatycznie zalogowany(a) na jedno z kont demonstracyjnych
 				</div>
 				<div class="row">
 					<div class="col-md-6">
-						<div class="left-panel additional">
-							<div class="text">Widok studenta</div>
+						<div class="left-panel additional" @click="login('margherita-demo-student@xememah.com')">
+							<div class="text">Student</div>
 						</div>
 					</div>
 					<div class="col-md-6">
-						<div class="right-panel additional">
-							<div class="text">Widok administratora</div>
+						<div class="right-panel additional" @click="login('margherita-demo-teacher@xememah.com')">
+							<div class="text">Administrator</div>
 						</div>
 					</div>
 				</div>
@@ -23,7 +23,26 @@
 </template>
 
 <script>
+	import auth from '../../auth'
 	export default {
+		data() {
+			return {
+				credentials: {
+					email: '',
+					password: 'demo'
+				},
+				error: ''
+			}
+		},
+		methods: {
+			login(email) {
+				var credentials = {
+					email: email,
+					password: this.credentials.password
+				}
+				auth.login(this, credentials, 'dashboard')
+			}
+		}
 	}
 </script>
 
@@ -45,6 +64,11 @@
 		.additional:hover {
 			cursor: pointer;
 			filter: grayscale(10%);
+		}
+		@media only screen and (max-width : 992px) {
+			.left-panel, .right-panel {
+				margin-bottom: 1em;
+			}
 		}
 	.text {
 		text-align: center;
