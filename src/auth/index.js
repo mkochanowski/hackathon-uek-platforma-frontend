@@ -7,30 +7,16 @@ const API_PATH = 'https://uek.maciekmm.net/accounts/'
 export default {
 
 	user: {
-		authenticated: false
+		authenticated: false,
+		admin: false
 	},
 
-	/* login (context, creds, redirect) {
-		context.$http.post(API_PATH + 'login', creds, (data) => {
-			localStorage.setItem('id_token', data.id_token)
-			localStorage.setItem('access_token', data.access_token)
-
-			this.user.authenticated = true
-
-			if (redirect) {
-				router.go(redirect)
-			}
-		}).error((err) => {
-			context.error = err
-		})
-	}, */
-
 	login (context, creds, redirect) {
-		console.log(JSON.stringify(creds))
-		context.$http.post(API_PATH + 'login/', creds, { emulateJSON: true }).then((data) => {
-			localStorage.setItem('id_token', data.id_token)
-			localStorage.setItem('access_token', data.access_token)
-
+		context.$http.post(API_PATH + 'login/', creds).then((data) => {
+			localStorage.setItem('jwt_token', data.body.token)
+			console.log(data.body.token)
+			console.log('token:')
+			console.log(localStorage.getItem('jwt_token'))
 			this.user.authenticated = true
 
 			if (redirect) {
@@ -44,9 +30,7 @@ export default {
 
 	signup (context, creds, redirect) {
 		context.$http.post(API_PATH + 'register', creds, (data) => {
-			localStorage.setItem('id_token', data.id_token)
-			localStorage.setItem('access_token', data.access_token)
-
+			localStorage.setItem('jwt_token', data.body.token)
 			this.user.authenticated = true
 
 			if (redirect) {
@@ -58,13 +42,12 @@ export default {
 	},
 
 	logout () {
-		localStorage.removeItem('id_token')
-		localStorage.removeItem('access_token')
+		localStorage.removeItem('jwt_token')
 		this.user.authenticated = false
 	},
 
 	checkAuth () {
-		var jwt = localStorage.getItem('id_token')
+		var jwt = localStorage.getItem('jwt_token')
 		if (jwt) {
 			this.user.authenticated = true
 		} else {
@@ -74,7 +57,7 @@ export default {
 
 	getAuthHeader () {
 		return {
-			'Authorization': 'Bearer ' + localStorage.getItem('access_token')
+			'Authorization': 'Bearer ' + localStorage.getItem('jwt_token')
 		}
 	}
 }
