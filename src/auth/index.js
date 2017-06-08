@@ -14,13 +14,10 @@ export default {
 	login (context, creds, redirect) {
 		context.$http.post(API_PATH + 'login/', creds).then((data) => {
 			localStorage.setItem('jwt_token', data.body.token)
-			console.log(data.body.token)
-			console.log('token:')
-			console.log(localStorage.getItem('jwt_token'))
 			this.user.authenticated = true
 
 			if (redirect) {
-				router.go(redirect)
+				router.push({ name: redirect })
 			}
 		},
 		(data) => {
@@ -28,18 +25,19 @@ export default {
 		})
 	},
 
-	signup (context, creds, redirect) {
-		context.$http.post(API_PATH + 'register', creds, (data) => {
+	/* signup (context, creds, redirect) {
+		context.$http.post(API_PATH + 'register/', creds.then((data) => {
 			localStorage.setItem('jwt_token', data.body.token)
 			this.user.authenticated = true
 
 			if (redirect) {
-				router.go(redirect)
+				router.push({ name: redirect })
 			}
-		}).error((err) => {
-			context.error = err
+		},
+		(data) => {
+			context.error = data.err
 		})
-	},
+	}, */
 
 	logout () {
 		localStorage.removeItem('jwt_token')

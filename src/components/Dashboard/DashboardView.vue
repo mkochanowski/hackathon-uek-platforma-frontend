@@ -25,21 +25,18 @@
 				<div class="card">
 					<div class="card-content">
 						<div class="text-center avatar">
-							<img :src="avatar_pic" alt="Avatar image"/><br/>
-							<div class="card-title" style="margin-top: 1em;">{{ name }}</div>
+							<img :src="avatar" alt="Avatar image"/><br/>
+							<div class="card-title" style="margin-top: 1em;">{{ user.name }}</div>
 							<table style="margin: 0 auto; margin-top: 1em;">
 								<tr>
-									<td class="header">Wydział:</td><td>{{ department }}</td>
+									<td class="header">Grupa:</td><td>{{ user.group }}</td>
 								</tr>
 								<tr>
-									<td class="header">Rok:</td><td>{{ year }}</td>
-								</tr>
-								<tr>
-									<td class="header">Rola:</td><td>{{ role }}</td>
+									<td class="header">Typ konta:</td><td>{{ user.role }}</td>
 								</tr>
 							</table>
 							<hr/>
-							<router-link :to="{ name: 'home' }" class="link">Wyloguj</router-link>
+							<router-link :to="{ name: 'login' }" class="link">Wyloguj</router-link>
 						</div>
 					</div>
 				</div>
@@ -49,21 +46,32 @@
 </template>
 
 <script>
+	import auth from '../../auth'
 	export default {
 		data() {
-			return {
-				name: "Aneta Kowalska",
-				avatar_pic: "../../static/avatar-teacher.png",
-				department: "Testowy",
-				year: "pierwszy",
-				role: "Student",
+			var token = localStorage.getItem('jwt_token')
+			var decode = jwt_decode(token)
+			var user = decode.User
+			console.log(user)
 
-				messages: [{
-					id: 1,
-					title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vulputate risus non orci commodo, nec dignissim purus mollis. Vivamus et purus eros. ',
-					platforms: ['Messenger', 'Mail', 'SMS']
-				}]
+			var pic = "../../static/avatar-teacher.png"
+			if(user.name == "Jan Kowalski")
+				pic = "../../static/avatar-student.png"
+			return {
+				user: user,
+				avatar: pic,
+
+				messages: []
 			}
+		},
+		created() {
+			this.$http.get('https://uek.maciekmm.net/events/', { headers: auth.getAuthHeader() }).then((data) => {
+				console.log(data);
+				this.messages = data
+			},
+			(data) => {
+				console.log(data.err)
+			})
 		}
 	}
 </script>
@@ -71,5 +79,9 @@
 <style lang="scss" scoped>
 	.avatar {
 		margin: 2em;
+	}
+	.email {
+		font-size: 0.7em;
+		color: grey;
 	}
 </style>

@@ -1,6 +1,5 @@
 <template>
 	<div>
-		<h1>Login Frame</h1>
 		<router-view></router-view>
 	</div>
 </template>
