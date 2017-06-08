@@ -27,7 +27,24 @@
 
 <style lang="scss">
 	$color-secondary: #888;
+	$accent: #006505;
 
+	button {
+		background-color: #fff;
+		color: $accent;
+		border: none;
+		font-family: 'Roboto', sans-serif;
+		font-weight: 300;
+		padding: 0.5em;
+		font-size: 1.3em;
+		border-radius: 5px;
+		box-shadow: 0 0 2px $color-secondary;
+		transition: all 0.3s ease;
+	}
+		button:hover, button:focus {
+			background-color: $accent;
+			color: #fff;
+		}
 	.link {
 		font-size: 1.3em;
 	}

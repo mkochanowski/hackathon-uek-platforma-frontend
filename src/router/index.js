@@ -26,6 +26,9 @@ import DashboardUserFrame from '@/components/Dashboard/User/DashboardUserFrame'
 import DashboardUserView from '@/components/Dashboard/User/DashboardUserView'
 import DashboardUserSettingsView from '@/components/Dashboard/User/DashboardUserSettingsView'
 
+// actions
+import AddEvent from '@/components/Dashboard/actions/AddEvent'
+
 Vue.use(Router)
 
 export default new Router({
@@ -84,6 +87,11 @@ export default new Router({
 					path: 'events',
 					name: 'events',
 					component: DashboardEventsView
+				},
+				{
+					path: 'events/add',
+					name: 'events.add',
+					component: AddEvent
 				},
 				{
 					path: 'groups',
