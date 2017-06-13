@@ -4,6 +4,25 @@
 		<div class="row">
 			<div class="col-md-8">
 				<div class="card">
+					<div class="card-title">Subskrypcje</div>
+					<div class="card-content">
+						<table style="width: 100%;">
+							<tr>
+								<td>Messenger</td>
+								<td>Web</td>
+								<td>Mail</td>
+								<td>SMS</td>
+							</tr>
+							<tr>
+								<td class="sub-active">Włączone</td>
+								<td class="sub-not-active">Wyłączone</td>
+								<td class="sub-not-active">Wyłączone</td>
+								<td class="sub-not-active">Wyłączone</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="card">
 					<div class="card-title">Ostatnie komunikaty</div>
 					<div class="card-content">
 						<table>
@@ -84,5 +103,11 @@
 	.email {
 		font-size: 0.7em;
 		color: grey;
+	}
+	.sub-active {
+		color: green;
+	}
+	.sub-not-active {
+		color: red;
 	}
 </style>
