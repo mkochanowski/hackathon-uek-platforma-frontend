@@ -9,13 +9,13 @@
 						<table>
 							<tr class="header">
 								<td>#</td>
-								<td>Tytuł komunikatu</td>
-								<td>Platforma</td>
+								<td>name</td>
+								<td>subtitle</td>
 							</tr>
-							<tr v-for="item in messages">
-								<td>{{ item.id }}</td>
-								<td>{{ item.title }}</td>
-								<td><div v-for="platform in item.platforms">{{ platform }}</div></td>
+							<tr v-for="event in events">
+								<td>{{ event.ID }}</td>
+								<td>{{ event.name }}</td>
+								<td>{{ event.message }}</td>
 							</tr>
 						</table>
 					</div>
@@ -52,7 +52,6 @@
 			var token = localStorage.getItem('jwt_token')
 			var decode = jwt_decode(token)
 			var user = decode.User
-			console.log(user)
 
 			var pic = "../../static/avatar-teacher.png"
 			if(user.name == "Jan Kowalski")
@@ -60,14 +59,16 @@
 			return {
 				user: user,
 				avatar: pic,
-
-				messages: []
+				events: []
 			}
+		},
+		methods: {
+
 		},
 		created() {
 			this.$http.get('https://uek.maciekmm.net/events/', { headers: auth.getAuthHeader() }).then((data) => {
-				console.log(data);
-				this.messages = data
+				console.log(data.body)
+				this.events = data.body.slice(0, 10);
 			},
 			(data) => {
 				console.log(data.err)
