@@ -7,7 +7,7 @@
 					<button>Dodaj nowe wydarzenie</button>
 				</router-link>
 			</div>
-			<div v-for="event in events" class="col-md-4">
+			<div v-for="event in events" class="col-md-4 col-sm-6">
 				<div class="event">
 					<div class="event-header">{{ event.name }}</div>
 					{{ event.description }}

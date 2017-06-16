@@ -58,7 +58,7 @@
 		margin: 1em;
 	}
 	
-	@media only screen and (min-width : 992px) {
+	@media only screen and (min-width : 1170px) {
 		.main-content {
 			margin: 5em;
 		}
@@ -84,7 +84,8 @@
 		box-shadow: 0px 0px 25px 5px #E7E7E7;
 	}
 	.card {
-		margin: 1em;
+		margin-top: 1em;
+		margin-bottom: 1em;
 		padding: 1em;
 		background-color: $card-background; 
 		border-radius: 5px;

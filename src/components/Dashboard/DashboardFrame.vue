@@ -61,8 +61,9 @@
 		padding-top: 15px;
 	}
 	.card-title {
+		color: #555;
 		font-size: 2em;
-		font-weight: 400;
+		font-weight: 300;
 	}
 	.card-content {
 		padding: 1em;
@@ -70,7 +71,14 @@
 	td {
 		padding: 0.5em;
 	}
-	tr.header, td.header {
+	tr.header, 
+	td.header {
 		font-weight: 700;
+		background-color: #eee;
+	}
+	hr {
+		background-color: #ddd; 
+		height: 1px; 
+		border: 0;
 	}
 </style>

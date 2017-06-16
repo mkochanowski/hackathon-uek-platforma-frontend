@@ -4,35 +4,55 @@
 		<div class="row">
 			<div class="col-md-8">
 				<div class="card">
-					<div class="card-title">Subskrypcje</div>
+					<div class="card-title">Aktywne subskrypcje</div>
 					<div class="card-content">
 						<table style="width: 100%;">
-							<tr>
-								<td>Messenger</td>
-								<td>Web</td>
-								<td>Mail</td>
-								<td>SMS</td>
+							<tr class="header">
+								<td>Platforma</td>
+								<td>Odbiorca</td>
+								<td>Preferencje</td>
 							</tr>
-							<tr>
-								<td class="sub-active">Włączone</td>
-								<td class="sub-not-active">Wyłączone</td>
-								<td class="sub-not-active">Wyłączone</td>
-								<td class="sub-not-active">Wyłączone</td>
+							<tr v-for="item in subscriptions">
+								<td style="text-transform: capitalize;">{{ item.channel }}</td>
+								<td><span v-if="item.channel == 'messenger'">UID </span><strong>{{ item.channel_id }}</strong></td>
+								<td>
+									<select>
+										<option value="0">Otrzymuj wszystkie wiadomości</option>
+										<option value="1">Otrzymuj tylko spersonalizowane</option>
+										<option value="2">Otrzymuj tylko wyjątkowo ważne</option>
+									</select>
+								</td>
 							</tr>
 						</table>
+						<hr/>
+						<router-link class="link" style="margin-left: 0;" :to="{ name: 'subs.add' }">Dodaj nową subskrypcję</router-link>							
+						<!--<tr>
+							<td>
+								<div class="fb-send-to-messenger" 
+									messenger_app_id="303773933400957" 
+									page_id="307034089754268" 
+									:data-ref="messengerData" 
+									color="white" 
+									size="large">
+								</div>    
+							</td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>-->
 					</div>
 				</div>
 				<div class="card">
 					<div class="card-title">Ostatnie komunikaty</div>
 					<div class="card-content">
-						<table>
+						<table style="width: 100%;">
 							<tr class="header">
 								<td>#</td>
 								<td>name</td>
 								<td>subtitle</td>
 							</tr>
-							<tr v-for="event in events">
-								<td>{{ event.ID }}</td>
+							<tr v-for="(event, index) in events">
+								<td>{{ index+1 }}</td>
 								<td>{{ event.name }}</td>
 								<td>{{ event.message }}</td>
 							</tr>
@@ -46,14 +66,16 @@
 						<div class="text-center avatar">
 							<img :src="avatar" alt="Avatar image"/><br/>
 							<div class="card-title" style="margin-top: 1em;">{{ user.name }}</div>
-							<table style="margin: 0 auto; margin-top: 1em;">
+							<div v-if="user.role == 1">Administrator</div>
+							<div v-else>Student</div>
+							<!--<table style="margin: 0 auto; margin-top: 1em;">
 								<tr>
-									<td class="header">Grupa:</td><td>{{ user.group }}</td>
+									<td class="header" colspan="2">Kraków Turystyka i Rekreacja</td>
 								</tr>
 								<tr>
-									<td class="header">Typ konta:</td><td>{{ user.role }}</td>
+									<td class="header">Grupa</td><td>KrDUTr1011 <router-link class="timetable" :to="{ name: 'timetable' }">{{ user.group }}</router-link></td>
 								</tr>
-							</table>
+							</table>-->
 							<hr/>
 							<router-link :to="{ name: 'login' }" class="link">Wyloguj</router-link>
 						</div>
@@ -66,6 +88,30 @@
 
 <script>
 	import auth from '../../auth'
+	
+	window.fbAsyncInit = function() {
+		FB.init({
+		appId: "303773933400957",
+		xfbml: true,
+		version: "v2.6"
+		});
+
+		FB.Event.subscribe('send_to_messenger', function(e) {
+			console.log(e)
+			if (e.event == 'opt_in') {
+				//window.top.location = '#/action/messenger';
+			}
+		});
+    };
+
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) { return; }
+       js = d.createElement(s); js.id = id;
+       js.src = "//connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
 	export default {
 		data() {
 			var token = localStorage.getItem('jwt_token')
@@ -75,23 +121,37 @@
 			var pic = "../../static/avatar-teacher.png"
 			if(user.name == "Jan Kowalski")
 				pic = "../../static/avatar-student.png"
+
+			console.log(user)
+			var d = user.ID + ':0' //pls no
 			return {
 				user: user,
 				avatar: pic,
-				events: []
+				events: [],
+				subscriptions: [],
+				messengerData: d
 			}
 		},
 		methods: {
-
+			getSubscriptions: function() {
+				this.$http.get('https://uek.maciekmm.net/subscriptions/', { headers: auth.getAuthHeader() }).then(data => {
+					this.subscriptions = data.body;
+					console.log(this.subscriptions)
+				}, data => {
+					console.log(data.err)
+				})
+			},
+			getEvents: function() {
+				this.$http.get('https://uek.maciekmm.net/events/', { headers: auth.getAuthHeader() }).then(data => {
+					this.events = data.body;
+				}, data => {
+					console.log(data.err)
+				})
+			}
 		},
 		created() {
-			this.$http.get('https://uek.maciekmm.net/events/', { headers: auth.getAuthHeader() }).then((data) => {
-				console.log(data.body)
-				this.events = data.body.slice(0, 10);
-			},
-			(data) => {
-				console.log(data.err)
-			})
+			this.getSubscriptions();
+			this.getEvents();
 		}
 	}
 </script>
@@ -109,5 +169,9 @@
 	}
 	.sub-not-active {
 		color: red;
+	}
+	.timetable {
+		color: blue;
+		font-weight: 700;
 	}
 </style>
