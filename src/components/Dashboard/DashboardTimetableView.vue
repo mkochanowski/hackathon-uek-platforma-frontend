@@ -33,11 +33,11 @@
 					var start = new Date()
 					var end = new Date()
 
-					// start.setDate(start.getDate() - current.getDay()+1)
-					start.setDate(start.getDate()-14 - current.getDay()+1)
+					start.setDate(start.getDate() - current.getDay()+1)
+					// start.setDate(start.getDate()-14 - current.getDay()+1)
 					start = new Date(start.getFullYear(), start.getMonth(), start.getDate())
-					// end.setDate(end.getDate()+7 - current.getDay()+1)
-					end.setDate(end.getDate()-7 - current.getDay()+1)
+					end.setDate(end.getDate()+7 - current.getDay()+1)
+					// end.setDate(end.getDate()-7 - current.getDay()+1)
 					end = new Date(end.getFullYear(), end.getMonth(), end.getDate())
 
 					return { start: start, end: end }

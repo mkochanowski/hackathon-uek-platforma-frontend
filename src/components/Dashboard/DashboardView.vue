@@ -10,36 +10,23 @@
 							<tr class="header">
 								<td>Platforma</td>
 								<td>Odbiorca</td>
-								<td>Preferencje</td>
+								<td>Odbieranie</td>
 							</tr>
 							<tr v-for="item in subscriptions">
 								<td style="text-transform: capitalize;">{{ item.channel }}</td>
 								<td><span v-if="item.channel == 'messenger'">UID </span><strong>{{ item.channel_id }}</strong></td>
 								<td>
 									<select>
-										<option value="0">Otrzymuj wszystkie wiadomości</option>
-										<option value="1">Otrzymuj tylko spersonalizowane</option>
-										<option value="2">Otrzymuj tylko wyjątkowo ważne</option>
+										<option disabled value="">Odbieraj na "{{ item.channel }}"</option>
+										<option value="0">wszystkie wiadomości</option>
+										<option value="1">tylko spersonalizowane</option>
+										<option value="2">tylko wyjątkowo ważne</option>
 									</select>
 								</td>
 							</tr>
 						</table>
 						<hr/>
-						<router-link class="link" style="margin-left: 0;" :to="{ name: 'subs.add' }">Dodaj nową subskrypcję</router-link>							
-						<!--<tr>
-							<td>
-								<div class="fb-send-to-messenger" 
-									messenger_app_id="303773933400957" 
-									page_id="307034089754268" 
-									:data-ref="messengerData" 
-									color="white" 
-									size="large">
-								</div>    
-							</td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>-->
+						<router-link class="link link-bold" style="margin-left: 0;" :to="{ name: 'subs.add' }">Dodaj nową subskrypcję</router-link>							
 					</div>
 				</div>
 				<div class="card">
@@ -70,14 +57,14 @@
 							<div v-else>Student</div>
 							<!--<table style="margin: 0 auto; margin-top: 1em;">
 								<tr>
-									<td class="header" colspan="2">Kraków Turystyka i Rekreacja</td>
+									<td class="header" colspan="2">Nazwa wydziału</td>
 								</tr>
 								<tr>
 									<td class="header">Grupa</td><td>KrDUTr1011 <router-link class="timetable" :to="{ name: 'timetable' }">{{ user.group }}</router-link></td>
 								</tr>
 							</table>-->
 							<hr/>
-							<router-link :to="{ name: 'login' }" class="link">Wyloguj</router-link>
+							<router-link :to="{ name: 'login' }" class="link link-bold">Wyloguj</router-link>
 						</div>
 					</div>
 				</div>
@@ -88,29 +75,6 @@
 
 <script>
 	import auth from '../../auth'
-	
-	window.fbAsyncInit = function() {
-		FB.init({
-		appId: "303773933400957",
-		xfbml: true,
-		version: "v2.6"
-		});
-
-		FB.Event.subscribe('send_to_messenger', function(e) {
-			console.log(e)
-			if (e.event == 'opt_in') {
-				//window.top.location = '#/action/messenger';
-			}
-		});
-    };
-
-    (function(d, s, id){
-       var js, fjs = d.getElementsByTagName(s)[0];
-       if (d.getElementById(id)) { return; }
-       js = d.createElement(s); js.id = id;
-       js.src = "//connect.facebook.net/en_US/sdk.js";
-       fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
 
 	export default {
 		data() {
@@ -122,14 +86,11 @@
 			if(user.name == "Jan Kowalski")
 				pic = "../../static/avatar-student.png"
 
-			console.log(user)
-			var d = user.ID + ':0' //pls no
 			return {
 				user: user,
 				avatar: pic,
 				events: [],
-				subscriptions: [],
-				messengerData: d
+				subscriptions: []
 			}
 		},
 		methods: {
@@ -173,5 +134,8 @@
 	.timetable {
 		color: blue;
 		font-weight: 700;
+	}
+	.link-bold {
+		font-weight: 400;
 	}
 </style>
