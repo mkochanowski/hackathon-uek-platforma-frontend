@@ -55,12 +55,17 @@
 	}
 
 	.main-content {
-		margin: 1em;
+		margin: 0.5em;
 	}
-	
+	.content-title {
+		margin-top: 1.5em;
+	}
 	@media only screen and (min-width : 1170px) {
 		.main-content {
 			margin: 5em;
+		}
+		.content-title {
+			margin-top: 0;
 		}
     }
 
@@ -91,5 +96,16 @@
 		background-color: $card-background; 
 		border-radius: 5px;
 		box-shadow: 0px 0px 25px 5px #E7E7E7;
+	}
+	@media only screen and (max-width : 768px) {
+		.col-md-4, .col-md-6, .col-md-8, .col-md-12 {
+			padding: 0;
+		}
+		.card {
+			padding: 0.7em;
+		}
+		.main-content {
+			margin: 0;
+		}
 	}
 </style>
