@@ -3,10 +3,9 @@
 		<div id="top-bar">
 			<div class="container">
 				<router-link :to="{ name: 'dashboard' }" class="link"><img src="../../assets/uek.png" alt="Logo UEK" class="logo"/></router-link>
-				<router-link :to="{ name: 'events' }" class="link">Wydarzenia</router-link>
-				<router-link :to="{ name: 'timetable' }" class="link">Plan zajęć</router-link>
-				<router-link :to="{ name: 'groups' }" class="link">Grupy docelowe</router-link>
-				<router-link :to="{ name: 'analytics' }" class="link">Zaangażowanie</router-link>
+				<router-link :to="{ name: 'events' }" class="link" exact>Wydarzenia</router-link>
+				<router-link :to="{ name: 'timetable' }" class="link" exact>Plan zajęć</router-link>
+				<router-link :to="{ name: 'analytics' }" class="link" exact>Zaangażowanie</router-link>
 			</div>
 		</div>
 		<div class="container-fluid">
@@ -28,6 +27,10 @@
 	$color-secondary: #888;
 	$accent: #006505;
 
+	.router-link-active {
+		font-weight: 700;
+	}
+
 	button {
 		background-color: #fff;
 		color: $accent;
@@ -35,6 +38,8 @@
 		font-family: 'Roboto', sans-serif;
 		font-weight: 300;
 		padding: 0.5em;
+		padding-left: 2em;
+		padding-right: 2em;
 		font-size: 1.3em;
 		border-radius: 5px;
 		box-shadow: 0 0 2px $color-secondary;
@@ -45,8 +50,14 @@
 			color: #fff;
 		}
 	.link {
+		margin: 1em;
 		font-size: 1.3em;
+		transition: all 0.3s ease;
 	}
+		.link:hover {
+			color: #333;
+			opacity: 0.5;
+		}
 	.content-title {
 		color: $color-secondary;
 		font-weight: 300;
@@ -80,5 +91,9 @@
 		background-color: #ddd; 
 		height: 1px; 
 		border: 0;
+	}
+	select {
+		border: none;
+		background: none;
 	}
 </style>

@@ -23,7 +23,7 @@
 									<td>priority</td>
 								</tr>
 								<tr>
-									<td class="text-right"><input @click.prevent="addEvent" type="submit"/></td>
+									<td class="text-right"><button @click.prevent="addEvent">Zakończ dodawanie</button></td>
 								</tr>
 							</table>
 						</form>

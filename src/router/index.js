@@ -10,7 +10,6 @@ import LandingView from '@/components/Landing/LandingView'
 // import LoginFrame from '@/components/Landing/LoginFrame'
 import LoginView from '@/components/Landing/LoginView'
 // import ForgottenPasswordView from '@/components/Landing/ForgottenPasswordView'
-
 import RegisterView from '@/components/Landing/RegisterView'
 
 // Dashboard
@@ -28,6 +27,8 @@ import DashboardUserSettingsView from '@/components/Dashboard/User/DashboardUser
 
 // actions
 import AddEvent from '@/components/Dashboard/actions/AddEvent'
+import AddSub from '@/components/Dashboard/actions/AddSub'
+import MessengerAuth from '@/components/Dashboard/actions/MessengerAuth'
 
 Vue.use(Router)
 
@@ -94,6 +95,11 @@ export default new Router({
 					component: AddEvent
 				},
 				{
+					path: 'subscriptions/add',
+					name: 'subs.add',
+					component: AddSub
+				},
+				{
 					path: 'groups',
 					name: 'groups',
 					component: DashboardGroupsView
@@ -125,6 +131,10 @@ export default new Router({
 					]
 				}
 			]
+		},
+		{
+			path: 'action/messenger',
+			component: MessengerAuth
 		}
 	]
 })

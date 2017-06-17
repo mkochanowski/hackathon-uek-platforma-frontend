@@ -29,13 +29,13 @@
 		width: 2*$size;
 		height: $size;
 	}
-	.link {
+	.link-top {
 		font-weight: 300;
 		margin: 1em;
 		font-size: 1.7em;
 		transition: all 0.3s ease;
 	}
-		.link:hover {
+		.link-top:hover {
 			text-decoration: none;
 			color: #333;
 			opacity: 0.5;
@@ -82,6 +82,7 @@
 		padding-top: 0.5em;
 		padding-bottom: 0.5em;
 		box-shadow: 0px 0px 25px 5px #E7E7E7;
+		font-weight: 300;
 	}
 	.card {
 		margin-top: 1em;
