@@ -21,12 +21,4 @@
 		width: 2*$size;
 		height: $size;
 	}
-	#top-bar {
-		background-color: $background_top;
-		padding-left: 2em;
-		padding-right: 2em;
-		padding-top: 0.5em;
-		padding-bottom: 0.5em;
-		box-shadow: 0px 0px 25px 5px #ccc;
-	}
 </style>

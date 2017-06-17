@@ -19,7 +19,15 @@
 </template>
 
 <script>
+	import auth from '../../auth'
+
 	export default {
+		created() {
+			var decode = jwt_decode(localStorage.getItem('jwt_token'))
+			var exp = decode.exp
+			var now = Date.now();
+			console.log(now + ' to ' + exp)
+		}
 	}
 </script>
 
@@ -42,7 +50,6 @@
 		padding-right: 2em;
 		font-size: 1.3em;
 		border-radius: 5px;
-		box-shadow: 0 0 2px $color-secondary;
 		transition: all 0.3s ease;
 	}
 		button:hover, button:focus {
@@ -96,4 +103,16 @@
 		border: none;
 		background: none;
 	}
+
+	input, textarea {
+		border: none;
+		padding: 0.8em;
+		border-radius: 5px;
+		outline: none;
+		transition: all .3s ease;
+	}
+		input:focus, textarea:focus {
+			box-shadow: 0 0 5px #999;
+			background-color: #fcfcfc;
+		}
 </style>

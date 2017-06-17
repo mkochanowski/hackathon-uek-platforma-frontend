@@ -70,7 +70,7 @@
 					<transition name="fade">
 						<div id="step2" v-if="finishedConfig()">
 							<div class="card-title"><span class="step">3</span>Potwierdzenie</div>
-							<div class="step-content">
+							<div class="step-content text-center">
 								<button @click="addSubscription">Potwierdź i zakończ konfigurację</button>
 							</div>
 						</div>
@@ -154,13 +154,9 @@
 </script>
 
 <style lang="scss" scoped>
-	input[type=text] {
-		width: 100%;	
-	}
 	input[type=tel], input[type=email] {
 		width: 300px;
-		padding: 0.5em;
-		border-radius: 5px;
+		box-shadow: 0 0 5px #cfcfcf;
 	}
 	textarea {
 		width: 100%;
