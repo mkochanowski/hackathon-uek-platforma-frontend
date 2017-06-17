@@ -7,11 +7,13 @@
 					<button>Dodaj nowe wydarzenie</button>
 				</router-link>
 			</div>
-			<div v-for="event in events" class="col-md-4 col-sm-6">
-				<div class="event">
-					<div class="event-header">{{ event.name }}</div>
-					{{ event.description }}
-				</div>
+			<div v-for="event in events" class="col-md-6 col-sm-6">
+				<router-link :to="{ name: 'events.view', params: { eventId: event.ID } }">
+					<div class="event" :style="background(event.image)">
+						<div class="event-header">{{ event.name }}</div>
+						<div class="event-description">{{ event.description }}</div>
+					</div>
+				</router-link>
 			</div>
 		</div>
 	</div>
@@ -22,7 +24,9 @@
 	export default {
 		data() {
 			return {
-				events: []
+				events: [],
+				eventStyle: '',
+				eventClass: ''
 			}
 		},
 		created() {
@@ -33,19 +37,59 @@
 			(data) => {
 				console.log(data.err)
 			})
+		},
+		methods: {
+			/* eventStyles: function(event) {
+				if(event.image != '') {
+					
+					// noone cares about checking
+
+					/* this.$http.get(event.image).then(response => {
+						console.log(response)
+						if(response.status == 200 && response.url != '') {
+							var image = event.image
+							this.eventStyle = 'background: url(' + event.image + ');'
+						} else {
+							this.eventStyle = ''
+						}
+					})
+					
+					this.eventStyle = 'background: url(' + event.image + ');'
+					this.eventClass = 'has-image'
+				} else {
+					this.eventStyle = ''
+					this.eventClass = ''
+				}
+			}, */
+			background: function(image) {
+				if(image != '' && image != undefined) 
+					if(image.substr(0, 4) == 'http')
+						return 'background: url(' + image + '); color: #fff'
+				return ''
+			}
 		}	
 	}
 </script>
 
 <style lang="scss" scoped>
 	.event {
-		margin-top: 1em;
-		padding: 2em;
+		margin-top: 2em;
+		padding: 1em;
 		background: #fff;
 		height: 150px;
 		border-radius: 5px;
 	}
 		.event-header {
 			font-size: 2em;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden; 
+		}
+		.event-description {
+			line-height: 1em;
+			height: 2em;
+			text-overflow: ellipsis;
+			white-space: pre-wrap;
+			overflow: hidden; 
 		}
 </style>

@@ -8,21 +8,26 @@
 						<form>
 							<table style="width: 100%;">
 								<tr>
-									<td><input type="text" placeholder="Tytuł" v-model="form.name" required/></td>
+									<td colspan="2"><input type="text" placeholder="Tytuł" v-model="form.name" required/></td>
 								</tr>
 								<tr>
-									<td><input type="text" placeholder="Krótka treść notyfikacji" v-model="form.message" required/></td>
+									<td colspan="2"><input type="text" placeholder="Krótka treść notyfikacji" v-model="form.message" required/></td>
 								</tr> 
 								<tr>
-									<td><input type="text" placeholder="Link do obrazka opisującego" v-model="form.image"/></td>
+									<td colspan="2"><input type="url" placeholder="Link do obrazka opisującego" v-model="form.image"/></td>
 								</tr>
 								<tr>
-									<td><textarea placeholder="Pełna treść komunikatu" v-model="form.description" required></textarea></td>
+									<td colspan="2"><textarea placeholder="Pełna treść komunikatu" v-model="form.description" required></textarea></td>
 								</tr> 
 								<tr>
-									<td>priority</td>
-								</tr>
 								<tr>
+									<td>
+										<select>
+											<option value="0">Informacja ogólna</option>
+											<option value="1">Komunikat spersonalizowany</option>
+											<option value="2">Bardzo ważny komunikat</option>
+										</select>
+									</td>
 									<td class="text-right"><button @click.prevent="addEvent">Zakończ dodawanie</button></td>
 								</tr>
 							</table>
@@ -48,6 +53,7 @@
 <script>
 	import auth from '../../../auth'
 	import router from '../../../router'
+
 	export default {
 		data() {
 			return {
@@ -62,8 +68,16 @@
 		},
 		methods: {
 			addEvent: function() {
-				this.$http.post('https://uek.maciekmm.net/events/', { priority: 0, name: this.form.name, image: this.form.image, message: this.form.message, description: this.form.description }, { headers: auth.getAuthHeader() }).then(data => {
+				this.$http.post('https://uek.maciekmm.net/events/', { 
+					priority: 0, 
+					name: this.form.name, 
+					image: this.form.image, 
+					message: this.form.message, 
+					description: this.form.description 
+				}, { headers: auth.getAuthHeader() }).then(data => {
+
 					router.push({ name: 'events' })
+					
 				}, data => {
 					console.log(data.err)
 				})
@@ -73,11 +87,12 @@
 </script>
 
 <style lang="scss" scoped>
-	input[type=text] {
+	input[type=text], input[type=url] {
 		width: 100%;	
 	}
 	textarea {
 		width: 100%;
 		min-height: 200px;
+		resize: vertical;
 	}
 </style>

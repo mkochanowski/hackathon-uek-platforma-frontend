@@ -21,14 +21,10 @@ import DashboardEventsView from '@/components/Dashboard/DashboardEventsView'
 import DashboardGroupsView from '@/components/Dashboard/DashboardGroupsView'
 import DashboardTimetableView from '@/components/Dashboard/DashboardTimetableView'
 
-import DashboardUserFrame from '@/components/Dashboard/User/DashboardUserFrame'
-import DashboardUserView from '@/components/Dashboard/User/DashboardUserView'
-import DashboardUserSettingsView from '@/components/Dashboard/User/DashboardUserSettingsView'
-
 // actions
+import ViewEvent from '@/components/Dashboard/actions/ViewEvent'
 import AddEvent from '@/components/Dashboard/actions/AddEvent'
 import AddSub from '@/components/Dashboard/actions/AddSub'
-import MessengerAuth from '@/components/Dashboard/actions/MessengerAuth'
 
 Vue.use(Router)
 
@@ -95,6 +91,16 @@ export default new Router({
 					component: AddEvent
 				},
 				{
+					path: 'events/:eventId',
+					name: 'events.view',
+					component: ViewEvent
+				},
+				{
+					path: 'events/:eventId/:channelId',
+					name: 'events.view.channel',
+					component: ViewEvent
+				},
+				{
 					path: 'subscriptions/add',
 					name: 'subs.add',
 					component: AddSub
@@ -110,31 +116,11 @@ export default new Router({
 					component: DashboardMessagesView
 				},
 				{
-					path: 'analytics', // optional
+					path: 'analytics',
 					name: 'analytics',
 					component: DashboardAnalyticsView
-				},
-				{
-					path: 'user',
-					component: DashboardUserFrame,
-					children: [
-						{
-							path: '',
-							name: 'user',
-							component: DashboardUserView
-						},
-						{
-							path: 'settings',
-							name: 'user-settings',
-							component: DashboardUserSettingsView
-						}
-					]
 				}
 			]
-		},
-		{
-			path: 'action/messenger',
-			component: MessengerAuth
 		}
 	]
 })
