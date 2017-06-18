@@ -119,4 +119,13 @@
 			box-shadow: 0 0 5px #999;
 			background-color: #fcfcfc;
 		}
+	.pr-common {
+		color: #888;
+	}
+	.pr-most {
+		color: #cc0000;
+	}
+	.pr-target {
+		color: #2d58ff;
+	}
 </style>

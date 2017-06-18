@@ -115,13 +115,4 @@
 		white-space: pre-wrap;
 		text-overflow: auto;
 	}
-	.pr-common {
-		color: #dfdfdf;
-	}
-	.pr-most {
-		color: #cc0000
-	}
-	.pr-target {
-		color: aqua;
-	}
 </style>

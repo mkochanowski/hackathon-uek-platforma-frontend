@@ -105,13 +105,4 @@
 		.event-category {
 			margin-top: 2em;
 		}
-	.pr-common {
-		color: #888;
-	}
-	.pr-most {
-		color: #cc0000
-	}
-	.pr-target {
-		color: aqua;
-	}
 </style>
