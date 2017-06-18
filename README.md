@@ -1,6 +1,6 @@
-# margherita
+# UEK Hackathon
 
-> Margherita is a front-end solution designed for UEK Hackathon
+> Front-end solution designed for Platforma UEK
 
 ## Build Setup
 
@@ -26,8 +26,6 @@ npm run e2e
 # run all tests
 npm test
 
-# deploy dist/ to a remote server
+# deploy dist/ to a remote server (push permission to a repository required)
 npm run deploy
 ```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
