@@ -48,7 +48,7 @@ export default new Router({
 					name: 'sms-redirect',
 					redirect: {
 						name: 'events.view.channel',
-						params: { eventId: this.redirectId, channelId: 'sms'}
+						params: { eventId: 20, channelId: 'sms'}
 					}
 				},
 				{
@@ -135,6 +135,10 @@ export default new Router({
 					component: ViewAnalytics
 				},
 			]
+		},
+		{
+			path: '*',
+			redirect: '/'
 		}
 	]
 })

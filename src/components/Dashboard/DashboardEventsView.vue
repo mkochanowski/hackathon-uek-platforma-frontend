@@ -2,12 +2,12 @@
 	<div>
 		<div class="content-title">Wydarzenia</div>
 		<div class="row">
-			<div class="col-md-10 col-sm-9">
+			<div class="col-md-12">
 				<input type="text" class="search" v-model="search" placeholder="Wyszukaj wydarzenie..."/>
 			</div>
-			<div class="col-md-2 col-sm-3">
+			<!--<div class="col-md-2 col-sm-3">
 				<button class="filter">Filtruj</button>
-			</div>
+			</div>-->
 			<div class="col-md-12" v-if="user.role==1">
 				<router-link :to="{ name: 'events.add' }">
 					<button>Dodaj nowe wydarzenie</button>
