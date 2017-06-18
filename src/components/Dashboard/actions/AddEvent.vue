@@ -5,7 +5,7 @@
 			<div class="col-md-8">
 				<div class="card">
 					<div class="card-content">
-						<form>
+						<form v-if="user.role==1">
 							<table style="width: 100%;">
 								<tr>
 									<td colspan="2"><input type="text" placeholder="Tytuł" v-model="form.name" required/></td>
@@ -20,7 +20,6 @@
 									<td colspan="2"><textarea placeholder="Pełna treść komunikatu" v-model="form.description" required></textarea></td>
 								</tr> 
 								<tr>
-								<tr>
 									<td>
 										<select v-model.number="form.priority">
 											<option value="0">Informacja ogólna</option>
@@ -32,6 +31,9 @@
 								</tr>
 							</table>
 						</form>
+						<div v-else>
+							Brak odpowiednich uprawnień. Skorzystaj z konta administratora.
+						</div>
                     </div>
                 </div>
 			</div>
@@ -64,8 +66,16 @@
 					message: '',
 					group: '',
 					priority: 0
-				}
+				},
+				user: {
+					role: 0
+				},
+				groups: []
 			}
+		},
+		created() {
+			this.getGroups();
+			this.user.role = auth.role();
 		},
 		methods: {
 			addEvent: function() {
@@ -78,9 +88,16 @@
 					description: this.form.description 
 				}, { headers: auth.getAuthHeader() }).then(data => {
 					router.push({ name: 'events' })
-				}, data => {
-					console.log(data)
-				})
+				}, data => { console.log(data) })
+			},
+			getGroups: function() {
+				this.$http.get(
+					'https://uek.maciekmm.net/timetable/groups/', 
+					{ headers: auth.getAuthHeader() }
+				).then(data => {
+					this.groups = data.body;
+					console.log(this.groups)
+				}, data => { console.log(data) })
 			}
 		}
 	}
