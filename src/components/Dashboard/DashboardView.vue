@@ -17,7 +17,6 @@
 								<td><span v-if="item.channel == 'messenger'">UID </span><strong>{{ item.channel_id }}</strong></td>
 								<td>
 									<select>
-										<option disabled value="">Odbieraj na "{{ item.channel }}"</option>
 										<option value="0">wszystkie wiadomości</option>
 										<option value="1">tylko spersonalizowane</option>
 										<option value="2">tylko wyjątkowo ważne</option>

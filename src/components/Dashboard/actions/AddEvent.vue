@@ -22,7 +22,7 @@
 								<tr>
 								<tr>
 									<td>
-										<select>
+										<select v-model.number="form.priority">
 											<option value="0">Informacja ogólna</option>
 											<option value="1">Komunikat spersonalizowany</option>
 											<option value="2">Bardzo ważny komunikat</option>
@@ -62,24 +62,24 @@
 					description: '',
 					image: '',
 					message: '',
-					group: ''
+					group: '',
+					priority: 0
 				}
 			}
 		},
 		methods: {
 			addEvent: function() {
+				console.log(this.form)
 				this.$http.post('https://uek.maciekmm.net/events/', { 
-					priority: 0, 
+					priority: this.form.priority, 
 					name: this.form.name, 
 					image: this.form.image, 
 					message: this.form.message, 
 					description: this.form.description 
 				}, { headers: auth.getAuthHeader() }).then(data => {
-
 					router.push({ name: 'events' })
-					
 				}, data => {
-					console.log(data.err)
+					console.log(data)
 				})
 			}
 		}

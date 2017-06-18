@@ -55,6 +55,10 @@
 		button:hover, button:focus {
 			background-color: $accent;
 			color: #fff;
+		},
+		button:hover.button-red, button:focus.button-red {
+			background-color: #cc0000;
+			color: #fff;
 		}
 	.link {
 		margin: 1em;

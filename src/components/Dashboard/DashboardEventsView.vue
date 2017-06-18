@@ -12,6 +12,7 @@
 					<div class="event" :style="background(event.image)">
 						<div class="event-header">{{ event.name }}</div>
 						<div class="event-description">{{ event.description }}</div>
+						<div class="event-category"><strong :class="priority(event.priority).class">{{ priority(event.priority).text }}</strong></div>
 					</div>
 				</router-link>
 			</div>
@@ -64,8 +65,16 @@
 			background: function(image) {
 				if(image != '' && image != undefined) 
 					if(image.substr(0, 4) == 'http')
-						return 'background: url(' + image + '); color: #fff'
+						return 'background: url(' + image + '); background-size: cover; color: #fff'
 				return ''
+			},
+			priority: function(priority) {
+				if(priority != '' && priority != undefined) {
+					if(priority == 2)
+						return { class: 'pr-most', text: 'Bardzo ważny komunikat' }
+					else return { class: 'pr-target', text: 'Komunikat spersonalizowany' }
+				} else
+					return { class: 'pr-common', text: 'Informacja ogólna' }
 			}
 		}	
 	}
@@ -76,8 +85,9 @@
 		margin-top: 2em;
 		padding: 1em;
 		background: #fff;
-		height: 150px;
+		min-height: 150px;
 		border-radius: 5px;
+		letter-spacing: 0.03em;
 	}
 		.event-header {
 			font-size: 2em;
@@ -92,4 +102,16 @@
 			white-space: pre-wrap;
 			overflow: hidden; 
 		}
+		.event-category {
+			margin-top: 2em;
+		}
+	.pr-common {
+		color: #888;
+	}
+	.pr-most {
+		color: #cc0000
+	}
+	.pr-target {
+		color: aqua;
+	}
 </style>

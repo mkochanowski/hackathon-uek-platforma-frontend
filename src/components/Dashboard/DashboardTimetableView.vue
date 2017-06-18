@@ -1,10 +1,7 @@
 <template>
 	<div>
 		<div class="content-title">Plan zajęć</div>
-		<div class="card">
-			<div class="card-content">
-				<div class="timetable"></div>
-			</div>
+			<div class="timetable" style="box-shadow: 0 0 25px #ddd inset; border-radius: 5px; padding: 0.3em;"></div>
 		</div>
 	</div>
 </template>

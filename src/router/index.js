@@ -23,6 +23,7 @@ import DashboardTimetableView from '@/components/Dashboard/DashboardTimetableVie
 
 // actions
 import ViewEvent from '@/components/Dashboard/actions/ViewEvent'
+import ViewAnalytics from '@/components/Dashboard/actions/ViewAnalytics'
 import AddEvent from '@/components/Dashboard/actions/AddEvent'
 import AddSub from '@/components/Dashboard/actions/AddSub'
 
@@ -41,6 +42,14 @@ export default new Router({
 					path: '',
 					name: 'home',
 					component: LandingView
+				},
+				{
+					path: 'sms/:redirectId',
+					name: 'sms-redirect',
+					redirect: {
+						name: 'events.view.channel',
+						params: { eventId: this.redirectId, channelId: 'sms'}
+					}
 				},
 				{
 					path: 'login',
@@ -119,7 +128,12 @@ export default new Router({
 					path: 'analytics',
 					name: 'analytics',
 					component: DashboardAnalyticsView
-				}
+				},
+				{
+					path: 'analytics/:eventId',
+					name: 'analytics.view',
+					component: ViewAnalytics
+				},
 			]
 		}
 	]
