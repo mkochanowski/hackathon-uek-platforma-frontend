@@ -11,9 +11,11 @@
 				<div class="event-description">{{ event.description }}</div>
 			</div>
 
-			<hr/>
-			<router-link :to="{ name: 'analytics.view', param: { eventId: event.ID } }"><button>Badaj zaangażowanie studentów</button></router-link>
-			<button class="button-red" @click="deleteEvent" style="margin-left: 1em;">Usuń wydarzenie</button>
+			<div v-if="user.role==1">
+				<hr/>
+				<router-link :to="{ name: 'analytics.view', param: { eventId: event.ID } }"><button>Badaj zaangażowanie studentów</button></router-link>
+				<button class="button-red" @click="deleteEvent" style="margin-left: 1em;">Usuń wydarzenie</button>
+			</div>
 		</div>
 	</div>
 </template>
@@ -25,11 +27,15 @@
 	export default {
 		data() {
 			return {
-				event: []
+				event: [],
+				user: {
+					role: 0
+				}
 			}
 		},
 		created() {
 			this.getEvent();
+			this.user.role = auth.role();
 		},
 		methods: {
 			getEvent: function() {

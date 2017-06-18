@@ -8,7 +8,7 @@
 			<div class="col-md-2 col-sm-3">
 				<button class="filter">Filtruj</button>
 			</div>
-			<div class="col-md-12">
+			<div class="col-md-12" v-if="user.role==1">
 				<router-link :to="{ name: 'events.add' }">
 					<button>Dodaj nowe wydarzenie</button>
 				</router-link>
@@ -34,7 +34,10 @@
 				events: [],
 				eventStyle: '',
 				eventClass: '',
-				search: ''
+				search: '',
+				user: {
+					role: 0
+				}
 			}
 		},
 		created() {
@@ -45,6 +48,8 @@
 			(data) => {
 				console.log(data.err)
 			})
+
+			this.user.role = auth.role();
 		},
 		computed: {
 			filteredEvents: function() {

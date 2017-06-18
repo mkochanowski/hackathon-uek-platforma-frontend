@@ -2,7 +2,7 @@
 	<div>
 		<div class="content-title">Zaangażowanie</div>
 		<div class="card">
-			<div class="card-content">
+			<div class="card-content" v-if="user.role==1">
 				<table style="width: 100%;">
 					<tr class="header">
 						<td style="width: 5%;" class="hidden-xs">UID</td>
@@ -18,7 +18,10 @@
 					</tr>
 				</table>
 			</div>
+			<div v-else class="card-content">
+				Brak odpowiednich uprawnień. Skorzystaj z konta administratora.
 			</div>
+		</div>
 	</div>
 </template>
 
@@ -29,7 +32,10 @@
 			return {
 				events: [],
 				eventStyle: '',
-				eventClass: ''
+				eventClass: '',
+				user: {
+					role: 0
+				}
 			}
 		},
 		created() {
@@ -40,6 +46,8 @@
 			(data) => {
 				console.log(data.err)
 			})
+
+			this.user.role = auth.role();
 		},
 		methods: {
 			background: function(image) {

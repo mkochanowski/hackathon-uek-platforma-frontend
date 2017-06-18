@@ -5,7 +5,7 @@
 				<router-link :to="{ name: 'dashboard' }" class="link"><img src="../../assets/uek.png" alt="Logo UEK" class="logo"/></router-link>
 				<router-link :to="{ name: 'events' }" class="link">Wydarzenia</router-link>
 				<router-link :to="{ name: 'timetable' }" class="link">Plan zajęć</router-link>
-				<router-link :to="{ name: 'analytics' }" class="link">Zaangażowanie</router-link>
+				<router-link :to="{ name: 'analytics' }" class="link" v-if="user.role==1">Zaangażowanie</router-link>
 			</div>
 		</div>
 		<div class="container-fluid">
@@ -22,11 +22,20 @@
 	import auth from '../../auth'
 
 	export default {
+		data() {
+			return {
+				user: {
+					role: 0
+				}
+			}
+		},
 		created() {
 			var decode = jwt_decode(localStorage.getItem('jwt_token'))
 			var exp = decode.exp
 			var now = Date.now();
 			console.log(now + ' to ' + exp)
+
+			this.user.role = decode.User.role
 		}
 	}
 </script>

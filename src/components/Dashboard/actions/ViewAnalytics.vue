@@ -2,10 +2,15 @@
 	<div>
 		<router-link :to="{ name: 'analytics' }"><div class="content-title">← Powrót do pełnej listy statystyk</div></router-link>
 		<div class="card">
-			Wszystkich interakcji: {{ all }}
-			<div v-for="item in interactions">
-				Platform: {{ item.channel }} <br/>
-				Timestamp: {{ item.timestamp }} <br/>
+			<div v-if="user.role==1">
+				Wszystkich interakcji: {{ all }}
+				<div v-for="item in interactions">
+					Platform: {{ item.channel }} <br/>
+					Timestamp: {{ item.timestamp }} <br/>
+				</div>
+			</div>
+			<div v-else class="card-content">
+				Brak odpowiednich uprawnień. Skorzystaj z konta administratora.
 			</div>
 		</div>
 	</div>
@@ -20,11 +25,15 @@
 			return {
 				interactions: [],
 				all: 0,
-				data: []
+				data: [],
+				user: {
+					role: 0
+				}
 			}
 		},
 		created() {
 			this.getEvent();
+			this.user.role = auth.role();
 		},
 		methods: {
 			getEvent: function() {

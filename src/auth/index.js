@@ -8,7 +8,7 @@ export default {
 
 	user: {
 		authenticated: false,
-		admin: false
+		role: 0
 	},
 
 	login (context, creds, redirect) {
@@ -44,6 +44,25 @@ export default {
 		this.user.authenticated = false
 	},
 
+	ifAdmin () {
+		var jwt = localStorage.getItem('jwt_token')
+		var decode = jwt_decode(jwt)
+		var user = decode.User
+		
+		console.log(decode)
+
+		if (user.role == 1) {
+			return true
+		} else return false
+	},
+
+	role () {
+		var jwt = localStorage.getItem('jwt_token')
+		var decode = jwt_decode(jwt)
+		var user = decode.User
+		return user.role;
+	},
+	
 	checkAuth () {
 		var jwt = localStorage.getItem('jwt_token')
 		if (jwt) {
