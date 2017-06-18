@@ -5,17 +5,15 @@
 			<div class="card-content">
 				<table style="width: 100%;">
 					<tr class="header">
-						<td style="width: 5%;">UID</td>
+						<td style="width: 5%;" class="hidden-xs">UID</td>
 						<td style="width: 35%;">Tytuł wydarzenia</td>
-						<td style="width: 30%;">Opis</td>
-						<td style="width: 20%;">Klasyfikacja priorytetu</td>
+						<td style="width: 50%;" class="hidden-xs">Opis</td>
 						<td style="width: 10%;"></td>
 					</tr>
 					<tr v-for="event in events">
-						<td><strong>{{ event.ID }}</strong></td>
-						<td class="line">{{ event.name.substr(0, 50) }}<span v-if="event.name.length>50">...</span></td>
-						<td class="line">{{ event.description.substr(0, 70) }}<span v-if="event.description.length>700">...</span></td>
-						<td><strong :class="priority(event.priority).class">{{ priority(event.priority).text }}</strong></td>
+						<td class="hidden-xs"><strong>{{ event.ID }}</strong></td>
+						<td class="line">{{ event.name.substr(0, 50) }}<span v-if="event.name.length>50">...</span><br/><strong :class="priority(event.priority).class">{{ priority(event.priority).text }}</strong></td>
+						<td class="line hidden-xs">{{ event.description.substr(0, 150) }}<span v-if="event.description.length>150">...</span></td>
 						<td><router-link :to="{ name: 'analytics.view', params: { eventId: event.ID } }"><button>Statystyki</button></router-link></td>
 					</tr>
 				</table>
@@ -44,28 +42,6 @@
 			})
 		},
 		methods: {
-			/* eventStyles: function(event) {
-				if(event.image != '') {
-					
-					// noone cares about checking
-
-					/* this.$http.get(event.image).then(response => {
-						console.log(response)
-						if(response.status == 200 && response.url != '') {
-							var image = event.image
-							this.eventStyle = 'background: url(' + event.image + ');'
-						} else {
-							this.eventStyle = ''
-						}
-					})
-					
-					this.eventStyle = 'background: url(' + event.image + ');'
-					this.eventClass = 'has-image'
-				} else {
-					this.eventStyle = ''
-					this.eventClass = ''
-				}
-			}, */
 			background: function(image) {
 				if(image != '' && image != undefined) 
 					if(image.substr(0, 4) == 'http')

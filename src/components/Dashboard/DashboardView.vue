@@ -9,12 +9,12 @@
 						<table style="width: 100%;">
 							<tr class="header">
 								<td>Platforma</td>
-								<td>Odbiorca</td>
+								<td class="hidden-xs">Odbiorca</td>
 								<td>Odbieranie</td>
 							</tr>
 							<tr v-for="item in subscriptions">
 								<td style="text-transform: capitalize;">{{ item.channel }}</td>
-								<td><span v-if="item.channel == 'messenger'">UID </span><strong>{{ item.channel_id }}</strong></td>
+								<td class="hidden-xs"><span v-if="item.channel == 'messenger'">UID </span><strong>{{ item.channel_id }}</strong></td>
 								<td>
 									<select>
 										<option value="0">wszystkie wiadomości</option>
@@ -28,22 +28,15 @@
 						<router-link class="link link-bold" style="margin-left: 0;" :to="{ name: 'subs.add' }">Dodaj nową subskrypcję</router-link>							
 					</div>
 				</div>
-				<div class="card">
-					<div class="card-title">Ostatnie komunikaty</div>
-					<div class="card-content">
-						<table style="width: 100%;">
-							<tr class="header">
-								<td>#</td>
-								<td>name</td>
-								<td>subtitle</td>
-							</tr>
-							<tr v-for="(event, index) in events">
-								<td>{{ index+1 }}</td>
-								<td>{{ event.name }}</td>
-								<td>{{ event.message }}</td>
-							</tr>
-						</table>
-					</div>
+				<div class="col-md-8" v-for="event in events" style="width: 100%;">
+					<div class="content-title visible-md visible-lg" style="margin-left: -0.5em; margin-top: 1em;">Ostatnie wydarzenie</div>
+					<router-link :to="{ name: 'events.view', params: { eventId: event.ID } }">
+						<div class="event" :style="background(event.image)">
+							<div class="event-header">{{ event.name }}</div>
+							<div class="event-description">{{ event.description }}</div>
+							<div class="event-category"><strong :class="priority(event.priority).class">{{ priority(event.priority).text }}</strong></div>
+						</div>
+					</router-link>
 				</div>
 			</div>
 			<div class="col-md-4">
@@ -103,10 +96,27 @@
 			},
 			getEvents: function() {
 				this.$http.get('https://uek.maciekmm.net/events/', { headers: auth.getAuthHeader() }).then(data => {
-					this.events = data.body;
+					var d = data.body.reverse();
+					
+					this.events = d.slice(0, 1);
+					console.log(this.events)
 				}, data => {
 					console.log(data.err)
 				})
+			},
+			background: function(image) {
+				if(image != '' && image != undefined) 
+					if(image.substr(0, 4) == 'http')
+						return 'background: url(' + image + '); background-size: cover; color: #fff'
+				return ''
+			},
+			priority: function(priority) {
+				if(priority != '' && priority != undefined) {
+					if(priority == 2)
+						return { class: 'pr-most', text: 'Bardzo ważny komunikat' }
+					else return { class: 'pr-target', text: 'Komunikat spersonalizowany' }
+				} else
+					return { class: 'pr-common', text: 'Informacja ogólna' }
 			}
 		},
 		created() {
@@ -137,4 +147,30 @@
 	.link-bold {
 		font-weight: 400;
 	}
+
+	.event {
+		margin-top: 1em;
+		margin-left: -1em;
+		margin-right: -1em;
+		padding: 1em;
+		background: #fff;
+		border-radius: 5px;
+		letter-spacing: 0.03em;
+	}
+		.event-header {
+			font-size: 2em;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden; 
+		}
+		.event-description {
+			line-height: 1em;
+			height: 2em;
+			text-overflow: ellipsis;
+			white-space: pre-wrap;
+			overflow: hidden; 
+		}
+		.event-category {
+			margin-top: 2em;
+		}	
 </style>

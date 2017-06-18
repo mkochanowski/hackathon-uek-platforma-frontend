@@ -37,6 +37,7 @@
 				var c = this.$route.params.channelId
 				if(c != undefined && c != '')
 					path += '?channel=' + c
+				console.log('path: ' + path)
 				this.$http.get(path, { headers: auth.getAuthHeader() }).then(data => {
 					console.log(data)
 					this.event = data.body

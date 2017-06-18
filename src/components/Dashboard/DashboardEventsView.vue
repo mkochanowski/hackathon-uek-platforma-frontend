@@ -32,36 +32,15 @@
 		},
 		created() {
 			this.$http.get('https://uek.maciekmm.net/events/', { headers: auth.getAuthHeader() }).then((data) => {
-				console.log(data.body)
-				this.events = data.body;
+				var d = data.body.reverse();
+				this.events = d;
 			},
 			(data) => {
 				console.log(data.err)
 			})
 		},
 		methods: {
-			/* eventStyles: function(event) {
-				if(event.image != '') {
-					
-					// noone cares about checking
 
-					/* this.$http.get(event.image).then(response => {
-						console.log(response)
-						if(response.status == 200 && response.url != '') {
-							var image = event.image
-							this.eventStyle = 'background: url(' + event.image + ');'
-						} else {
-							this.eventStyle = ''
-						}
-					})
-					
-					this.eventStyle = 'background: url(' + event.image + ');'
-					this.eventClass = 'has-image'
-				} else {
-					this.eventStyle = ''
-					this.eventClass = ''
-				}
-			}, */
 			background: function(image) {
 				if(image != '' && image != undefined) 
 					if(image.substr(0, 4) == 'http')

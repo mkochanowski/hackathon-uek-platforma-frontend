@@ -97,7 +97,7 @@
 		border-radius: 5px;
 		box-shadow: 0px 0px 25px 5px #E7E7E7;
 	}
-	@media only screen and (max-width : 768px) {
+	/* @media only screen and (max-width : 768px) {
 		.col-md-4, .col-md-6, .col-md-8, .col-md-12 {
 			padding: 0;
 		}
@@ -107,5 +107,5 @@
 		.main-content {
 			margin: 0;
 		}
-	}
+	} */
 </style>
