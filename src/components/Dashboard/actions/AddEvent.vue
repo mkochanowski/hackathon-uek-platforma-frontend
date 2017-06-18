@@ -18,10 +18,27 @@
 								</tr>
 								<tr>
 									<td colspan="2"><textarea placeholder="Pełna treść komunikatu" v-model="form.description" required></textarea></td>
-								</tr> 
+								</tr>
 								<tr>
 									<td>
-										<select v-model.number="form.priority">
+										<label for="form-category">Kategoria:</label><br>
+										<select v-model="form.category" id="form-category">
+											<option value="null" selected>Wszyscy</option>
+											<option v-for="(val, key) in groups" :value="key">{{ key }}</option>
+										</select>
+									</td>
+									<td v-if="form.category">
+										<label for="form-group">Grupa:</label><br>
+										<select v-model.number="form.group" id="form-group">
+											<option value="null">Wszyscy</option>
+											<option v-for="(val, key) in groups[form.category]" :value="val">{{ key }}</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label for="form-priority">Priorytet:</label><br>
+										<select v-model.number="form.priority" id="form-priority">
 											<option value="0">Informacja ogólna</option>
 											<option value="1">Komunikat spersonalizowany</option>
 											<option value="2">Bardzo ważny komunikat</option>
@@ -62,9 +79,10 @@
 				form: {
 					name: '',
 					description: '',
+					category: null,
 					image: '',
 					message: '',
-					group: '',
+					group: null,
 					priority: 0
 				},
 				user: {
@@ -85,7 +103,8 @@
 					name: this.form.name, 
 					image: this.form.image, 
 					message: this.form.message, 
-					description: this.form.description 
+					description: this.form.description,
+					group: this.form.group
 				}, { headers: auth.getAuthHeader() }).then(data => {
 					router.push({ name: 'events' })
 				}, data => { console.log(data) })
