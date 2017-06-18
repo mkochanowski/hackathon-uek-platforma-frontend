@@ -2,12 +2,18 @@
 	<div>
 		<div class="content-title">Wydarzenia</div>
 		<div class="row">
+			<div class="col-md-10 col-sm-9">
+				<input type="text" class="search" v-model="search" placeholder="Wyszukaj wydarzenie..."/>
+			</div>
+			<div class="col-md-2 col-sm-3">
+				<button class="filter">Filtruj</button>
+			</div>
 			<div class="col-md-12">
 				<router-link :to="{ name: 'events.add' }">
 					<button>Dodaj nowe wydarzenie</button>
 				</router-link>
 			</div>
-			<div v-for="event in events" class="col-md-6 col-sm-6">
+			<div v-for="event in filteredEvents" class="col-md-6 col-sm-6">
 				<router-link :to="{ name: 'events.view', params: { eventId: event.ID } }">
 					<div class="event" :style="background(event.image)">
 						<div class="event-header">{{ event.name }}</div>
@@ -27,7 +33,8 @@
 			return {
 				events: [],
 				eventStyle: '',
-				eventClass: ''
+				eventClass: '',
+				search: ''
 			}
 		},
 		created() {
@@ -38,6 +45,15 @@
 			(data) => {
 				console.log(data.err)
 			})
+		},
+		computed: {
+			filteredEvents: function() {
+				var e = this.events
+				return e.filter(event => {
+					var name = event.name.toLowerCase()
+					return name.match(this.search.toLowerCase())
+				})
+			}
 		},
 		methods: {
 
@@ -84,4 +100,15 @@
 		.event-category {
 			margin-top: 2em;
 		}
+	.search {
+		margin-bottom: 1em;
+		background-color: #ddd;
+		color: #333;
+		width: 100%;
+		box-shadow: none;
+	}
+	.filter {
+		margin-bottom: 1em;
+		width: 100%;
+	}
 </style>

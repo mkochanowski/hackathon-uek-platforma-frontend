@@ -116,7 +116,7 @@
 		transition: all .3s ease;
 	}
 		input:focus, textarea:focus {
-			box-shadow: 0 0 5px #999;
+			box-shadow: inset 0 0 3px #999;
 			background-color: #fcfcfc;
 		}
 	.pr-common {

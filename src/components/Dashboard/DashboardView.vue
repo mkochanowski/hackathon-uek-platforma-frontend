@@ -18,9 +18,9 @@
 								<td class="hidden-xs"><span v-if="item.channel == 'messenger'">UID </span><strong>{{ item.channel_id }}</strong></td>
 								<td>
 									<select v-model.number="item.priority" v-on:change="prioritySet(index)">
-										<option value="0">wszystkie wiadomości</option>
-										<option value="1">tylko spersonalizowane</option>
-										<option value="2">tylko wyjątkowo ważne</option>
+										<option value="0" class="pr-common">wszystkie wiadomości</option>
+										<option value="1" class="pr-target">tylko spersonalizowane</option>
+										<option value="2" class="pr-most">tylko wyjątkowo ważne</option>
 									</select>
 								</td>
 							</tr>
