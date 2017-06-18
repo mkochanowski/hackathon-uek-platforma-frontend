@@ -6,17 +6,18 @@
 				<div class="card">
 					<div class="card-title">Aktywne subskrypcje</div>
 					<div class="card-content">
+						<form>
 						<table style="width: 100%;">
 							<tr class="header">
 								<td>Platforma</td>
 								<td class="hidden-xs">Odbiorca</td>
 								<td>Odbieranie</td>
 							</tr>
-							<tr v-for="item in subscriptions">
+							<tr v-for="(item, index) in subscriptions">
 								<td style="text-transform: capitalize;">{{ item.channel }}</td>
 								<td class="hidden-xs"><span v-if="item.channel == 'messenger'">UID </span><strong>{{ item.channel_id }}</strong></td>
 								<td>
-									<select>
+									<select v-model.number="item.priority" v-on:change="prioritySet(index)">
 										<option value="0">wszystkie wiadomości</option>
 										<option value="1">tylko spersonalizowane</option>
 										<option value="2">tylko wyjątkowo ważne</option>
@@ -24,12 +25,12 @@
 								</td>
 							</tr>
 						</table>
+						</form>						
 						<hr/>
 						<router-link class="link link-bold" style="margin-left: 0;" :to="{ name: 'subs.add' }">Dodaj nową subskrypcję</router-link>							
 					</div>
 				</div>
 				<div class="col-md-8" v-for="event in events" style="width: 100%;">
-					<div class="content-title visible-md visible-lg" style="margin-left: -0.5em; margin-top: 1em;">Ostatnie wydarzenie</div>
 					<router-link :to="{ name: 'events.view', params: { eventId: event.ID } }">
 						<div class="event" :style="background(event.image)">
 							<div class="event-header">{{ event.name }}</div>
@@ -82,14 +83,14 @@
 				user: user,
 				avatar: pic,
 				events: [],
-				subscriptions: []
+				subscriptions: [],
+				form: [],
 			}
 		},
 		methods: {
 			getSubscriptions: function() {
 				this.$http.get('https://uek.maciekmm.net/subscriptions/', { headers: auth.getAuthHeader() }).then(data => {
 					this.subscriptions = data.body;
-					console.log(this.subscriptions)
 				}, data => {
 					console.log(data.err)
 				})
@@ -99,9 +100,17 @@
 					var d = data.body.reverse();
 					
 					this.events = d.slice(0, 1);
-					console.log(this.events)
 				}, data => {
 					console.log(data.err)
+				})
+			},
+			prioritySet: function(index) {
+				var d = this.subscriptions[index]
+
+				this.$http.patch('https://uek.maciekmm.net/subscriptions/' + d.ID + '/', { priority: d.priority }, { headers: auth.getAuthHeader() }).then(data => {
+					console.log(data)
+				}, data => {
+					console.log(data)
 				})
 			},
 			background: function(image) {
