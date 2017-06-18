@@ -20,19 +20,18 @@
 									<td colspan="2"><textarea placeholder="Pełna treść komunikatu" v-model="form.description" required></textarea></td>
 								</tr>
 								<tr>
-									<td>
-										<label for="form-category">Kategoria:</label><br>
+									<td colspan="2">
+										<label for="form-category">Kategoria // grupa:</label><br>
 										<select v-model="form.category" id="form-category">
 											<option value="null" selected>Wszyscy</option>
 											<option v-for="(val, key) in groups" :value="key">{{ key }}</option>
 										</select>
-									</td>
-									<td v-if="form.category">
-										<label for="form-group">Grupa:</label><br>
+										<span v-if="form.category" style="margin-left: 1em">
 										<select v-model.number="form.group" id="form-group">
 											<option value="null">Wszyscy</option>
 											<option v-for="(val, key) in groups[form.category]" :value="val">{{ key }}</option>
 										</select>
+										</span>
 									</td>
 								</tr>
 								<tr>

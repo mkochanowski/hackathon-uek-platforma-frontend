@@ -177,7 +177,6 @@
 }
 
 .timetable .time-entry {
-	background-color: #006505;
 	transition: 200ms background-color;
 	height: 90px;
 	display: block;
@@ -187,7 +186,7 @@
 	white-space: normal;
 	overflow: hidden;
 	color: #fff;
-	border: 1px solid #333;
+	border: 1px solid #E7E7E7;
 	transform-style: preserve-3d;
 
 }
@@ -200,5 +199,18 @@
 }
 
 .timetable .time-entry:hover {
-	background-color: #006505
+	background-color: #333
+}
+
+.block-default {
+	background-color: #006505;
+}
+.block-1 {
+	background-color: #4286f4;
+}
+.block-2 {
+	background-color: grey;
+}
+.block-3 {
+	background-color: #c17532;
 }

@@ -16,7 +16,7 @@
 		},
 		created() {
 			var timetable = new Timetable()
-			timetable.setScope(8, 23)
+			timetable.setScope(9, 23)
 
 			this.$http.get('https://uek.maciekmm.net/timetable/', { headers: auth.getAuthHeader() }).then((data) => {
 				var day = ['Niedziela','Poniedziałek','Wtorek','Środa','Czwartek','Piątek','Sobota']
@@ -26,16 +26,14 @@
 				}
 
 				function dateScope() {
-					var current = new Date()
-					var start = new Date()
-					var end = new Date()
+					var current = new Date(2017, 5, 0, 12, 12, 12) //manual change for debugging
+					var start = new Date(current)
+					var end = new Date(current)
 
-					start.setDate(start.getDate() - current.getDay()+1)
-					// start.setDate(start.getDate()-14 - current.getDay()+1)
-					start = new Date(start.getFullYear(), start.getMonth(), start.getDate())
-					end.setDate(end.getDate()+7 - current.getDay()+1)
-					// end.setDate(end.getDate()-7 - current.getDay()+1)
-					end = new Date(end.getFullYear(), end.getMonth(), end.getDate())
+					start.setDate(current.getDate() - current.getDay()+1)
+					start = new Date(current.getFullYear(), start.getMonth(), start.getDate())
+					end.setDate(current.getDate()+7 - current.getDay()+1)
+					end = new Date(current.getFullYear(), end.getMonth(), end.getDate())
 
 					return { start: start, end: end }
 				}
@@ -71,9 +69,25 @@
 					scope = dateScope()
 
 					if(date > scope.start && date < scope.end) {
+						var c = 'block-default'
+					
+						switch(item.type) {
+							case 'wykład':
+								c = 'block-1'
+								break;
+							case 'ćwiczenia':
+								c = 'block-2'
+								break;
+							case 'lektorat':
+								c = 'block-3'
+								break;
+						}	
+
 						var options = {
-							data: item
+							data: item,
+							class: c
 						}
+
 						console.log(item)
 						timetable.addEvent(item.class, dateName(date), new Date(item.start), new Date(item.end), options)
 					}
