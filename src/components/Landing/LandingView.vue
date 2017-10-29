@@ -11,15 +11,15 @@
 				<div class="panel-header" style="margin-top: 2em;">Obecnie obsługiwane</div>
 				<div class="row">
 					<div class="container icon-text">
-						<div class="col-md-4 text-center">
+						<div class="col-md-3 col-md-offset-3 text-center" style="margin-top: 1em:">
 							<img src="../../assets/icon/mail.svg" class="icon" alt="mail"/><br/>
 							Powiadomienia E-mail
 						</div>
-						<div class="col-md-4 text-center">
+						<!--<div class="col-md-4 text-center">
 							<img src="../../assets/icon/globe.svg" class="icon" alt="mail"/><br/>
 							Powiadomienia w przeglądarce
-						</div>
-						<div class="col-md-4 text-center">
+						</div>-->
+						<div class="col-md-3 text-center" style="margin-top: 1em:">
 							<img src="../../assets/icon/message-circle.svg" class="icon" alt="mail"/><br/>
 							Powiadomienia SMS <span class="disclaimer">*</span>
 						</div>
@@ -35,7 +35,8 @@
 		<div id="schedule" class="row text-center panel-padding skew-back">
 			<div class="skew">
 				<div class="panel-header">Czytelny harmonogram zajęć</div>
-				<div class="panel-content">A jeśli notyfikacje nie wystarczą?<br/>Dobrze jest mieć wszystko pod ręką.</div>
+				<div class="panel-content">A jeśli notyfikacje nie wystarczą?<br/>Dobrze jest mieć wszystko pod ręką.<br/>
+				<img src="../../assets/timetable.png" class="img-responsive" style="margin: 0 auto;" alt="Plan zajęć"/></div>
 			</div>
 		</div>
 		<div id="stack" class="row text-center panel-padding">
@@ -158,14 +159,22 @@
 		text-transform: uppercase;
 	}
 	.mockup-1 {
-		margin-top: 5em;
+		margin-top: 0em;
 		margin-bottom: -30em;
-		margin-left: auto;
-		margin-right: auto;
+		margin-left: -4em;
+		margin-right: -4em;
 		background: url(../../assets/mockup-channels.png) no-repeat;
-		background-position: center;
-		width: 1000px;
-		height: 618px;
+		background-size: cover;
+		max-width: 1000px;
+		min-height: 618px;
+	}
+	@media only screen and (min-width : 1170px) {
+		.mockup-1 {
+			background-position: center;
+			margin-top: 3em;
+			margin-left: auto;
+			margin-right: auto;
+		}
 	}
 	#intro {
 

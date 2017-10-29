@@ -2,7 +2,7 @@
 	<div>
 		<div class="content-title">Dodaj nowe wydarzenie</div>
 		<div class="row">
-			<div class="col-md-8">
+			<div class="col-md-12">
 				<div class="card">
 					<div class="card-content">
 						<form v-if="user.role==1">
@@ -53,7 +53,7 @@
                     </div>
                 </div>
 			</div>
-			<div class="col-md-4">
+			<!--<div class="col-md-4">
                 <div class="card">
 					<div class="card-title">Podgląd</div>
 					<div class="card-content">
@@ -63,7 +63,7 @@
                         Podgląd wiadomości SMS<br/>
                     </div>
                 </div>            
-            </div>
+            </div>-->
 		</div>
 	</div>
 </template>

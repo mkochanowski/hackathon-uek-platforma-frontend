@@ -56,6 +56,16 @@ export default {
 		} else return false
 	},
 
+	refreshToken (context) {
+		console.log(localStorage.getItem('jwt_token'))
+		context.$http.get('https://uek.maciekmm.net/accounts/token', { headers: auth.getAuthHeader() }).then((data) => {
+			localStorage.setItem('jwt_token', data.body.token)
+			console.log('set')
+			console.log(localStorage.getItem('jwt_token'))
+		},
+		(data) => { console.log(data) })
+	},
+
 	role () {
 		var jwt = localStorage.getItem('jwt_token')
 		var decode = jwt_decode(jwt)

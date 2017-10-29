@@ -21,25 +21,37 @@
 </template>
 
 <script>
-import auth from '../../auth'
+	import auth from '../../auth'
+	import router from '../../router'
 
-export default {
-	data() {
-		return {
-			user: {
-				role: 0
+	export default {
+		data() {
+			return {
+				user: {
+					role: 0
+				}
 			}
-		}
-	},
-	created() {
-		var decode = jwt_decode(localStorage.getItem('jwt_token'))
-		var exp = decode.exp
-		var now = Date.now();
-		console.log(now + ' to ' + exp)
+		},
+		created() {
+			var decode = jwt_decode(localStorage.getItem('jwt_token'))
+			var exp = decode.exp
+			var now = Date.now();
+			exp *= 1000
+			
+			if(exp <= now) {
+				router.push({ name: 'login' })
+				
+				/*this.$http.get('https://uek.maciekmm.net/accounts/token', { headers: auth.getAuthHeader() }).then((data) => {
+					localStorage.setItem('jwt_token', data.body.token)
+					console.log('set')
+					console.log(localStorage.getItem('jwt_token'))
+				},
+				(data) => { console.log(data) })*/
+			}
 
-		this.user.role = decode.User.role
+			this.user.role = decode.User.role
+		}
 	}
-}
 </script>
 
 <style lang="scss">
@@ -150,9 +162,8 @@ select {
 	}
 }
 
-
 .pr-common {
-	color: #888;
+	color: #cfcfcf;
 }
 
 .pr-most {
